@@ -11,13 +11,14 @@ public class App {
                 System.setSecurityManager(new SecurityManager());
             }
             // System.setProperty("java.rmi.server.codebase","file:/C:/Users/Jacek/workspace/RMIServer/bin/");
+            System.setProperty("java.rmi.server.hostname", "192.168.56.102");
             System.setProperty("java.rmi.server.codebase",
                     "D:\\3. PROJEKTY\\Studies-Engineer-8-Semester-PL\\Rozproszone systemy informatyczne\\Pracownia Specjalistyczna nr 1\\Server\\bin");
-            System.setProperty("java.rmi.server.codebase", "http://192.168.1.100/ulti/");
+            System.setProperty("java.rmi.server.codebase", "http://192.168.56.102/ulti/");
             System.out.println("Codebase: " + System.getProperty("java.rmi.server.codebase"));
             LocateRegistry.createRegistry(1099);
             MyServerImpl obj1 = new MyServerImpl();
-            Naming.rebind("//localhost/ABC", obj1);
+            Naming.rebind("//192.168.56.102/ABC", obj1);
             System.out.println("Serwer oczekuje ...");
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();

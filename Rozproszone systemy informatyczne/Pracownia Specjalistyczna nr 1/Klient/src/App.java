@@ -6,13 +6,13 @@ public class App {
         System.setProperty("java.security.policy", "security.policy");
         System.setSecurityManager(new SecurityManager());
         try {
-            MyServerInt myRemoteObject = (MyServerInt) Naming.lookup("//localhost/ABC");
+            MyServerInt myRemoteObject = (MyServerInt) Naming.lookup("//192.168.56.102/ABC");
             String text = "Hallo :-)";
             String result = myRemoteObject.getDescription(text);
             System.out.println("Wysłano do servera: " + text);
             System.out.println("Otrzymana z serwera odpowiedź: " + result);
             Boolean calualtor = true;
-            Scanner myInput = new Scanner( System.in );
+            Scanner myInput = new Scanner(System.in);
             while (calualtor) {
                 System.out.println("First Number:");
                 int fn = myInput.nextInt();
