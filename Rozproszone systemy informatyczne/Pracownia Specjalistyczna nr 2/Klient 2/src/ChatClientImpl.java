@@ -1,16 +1,16 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ChatClientImpl extends UnicastRemoteObject implements ChatClientInterface {
-    private ChatServerInterface server;
+public class ChatClientImpl extends UnicastRemoteObject implements ChatI {
+    private MyServerInt server;
 
-    public ChatClientImpl(ChatServerInterface server) throws RemoteException {
+    public ChatClientImpl(MyServerInt server) throws RemoteException {
         super();
         this.server = server;
     }
 
     @Override
-    public void receiveMessage(String message) throws RemoteException {
-        System.out.println("Server: " + message);
+    public void messageFromServer(String message) throws RemoteException {
+        System.out.println(message);
     }
 }
