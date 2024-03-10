@@ -45,7 +45,6 @@ public class App extends UnicastRemoteObject implements MyServerInt{
 
     @Override
     public void sendMessageToClient(String message) throws RemoteException {
-		System.out.println(chatters.size());
         for (Chatter chatter : chatters) {
             chatter.client.messageFromServer(message);
         }
