@@ -20,6 +20,9 @@ public class App {
             MyServerImpl obj1 = new MyServerImpl();
             Naming.rebind("//localhost/ABC", obj1);
             System.out.println("Serwer oczekuje ...");
+            while(true){
+                
+            }
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();
         }

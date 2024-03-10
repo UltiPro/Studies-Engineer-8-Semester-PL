@@ -8,5 +8,7 @@ public interface MyServerInt extends Remote {
 
     String GetProduct(String name) throws RemoteException;
 
-    String Send(String text) throws RemoteException;
+    void Send(String text) throws RemoteException;
+
+    String getChat() throws RemoteException;
 }

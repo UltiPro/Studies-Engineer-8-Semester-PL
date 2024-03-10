@@ -6,6 +6,7 @@ public class MyServerImpl extends UnicastRemoteObject implements MyServerInt {
     int i = 0;
 
     public ArrayList<Product> products = new ArrayList<Product>();
+    public ArrayList<String> chat = new ArrayList<String>();
 
     protected MyServerImpl() throws RemoteException {
         super();
@@ -34,5 +35,17 @@ public class MyServerImpl extends UnicastRemoteObject implements MyServerInt {
             if(product.name.equals(name)) return product.id+" "+product.name;
         }
         return null;
+    }
+
+    public void Send(String text) {
+        chat.add(text);
+    }
+
+    public String getChat() {
+        String s = "";
+        for(String mess : chat){
+            s += mess+"\n";
+        }
+        return s;
     }
 }
