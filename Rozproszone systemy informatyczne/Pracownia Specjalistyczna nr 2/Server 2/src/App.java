@@ -53,6 +53,7 @@ public class App extends UnicastRemoteObject implements MyServerInt{
 	@Override
 	public void registerListener(String name, ChatI client) throws RemoteException {	
 		try{
+            UnicastRemoteObject.exportObject(client, 1099);
 			chatters.addElement(new Chatter(name, client));	
 		}
 		catch(Exception e){
