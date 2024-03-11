@@ -15,7 +15,7 @@ public class App extends UnicastRemoteObject implements MyServerInt{
     }
 
     public static void main(String[] args) throws Exception {
-		String host = "192.168.56.102";
+		String host = "localhost";
 
         System.setProperty("java.security.policy", "security.policy");
         if (System.getSecurityManager() == null) {
