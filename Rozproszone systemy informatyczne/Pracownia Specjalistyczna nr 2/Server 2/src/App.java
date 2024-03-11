@@ -15,15 +15,15 @@ public class App extends UnicastRemoteObject implements MyServerInt{
     }
 
     public static void main(String[] args) throws Exception {
-		String host = "localhost";
+		String host = "192.168.56.102";
 
         System.setProperty("java.security.policy", "security.policy");
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
-        LocateRegistry.createRegistry(1099);
         System.setProperty("java.rmi.server.hostname", host);
         System.setProperty("java.rmi.server.codebase", "http://"+host+"/Chat/");
+        LocateRegistry.createRegistry(1099);
         try {
             MyServerInt myServerInt = new App();
 			Naming.rebind("//"+host+"/Chat", myServerInt);
@@ -53,7 +53,6 @@ public class App extends UnicastRemoteObject implements MyServerInt{
 	@Override
 	public void registerListener(String name, ChatI client) throws RemoteException {	
 		try{
-            UnicastRemoteObject.exportObject(client, 1099);
 			chatters.addElement(new Chatter(name, client));	
 		}
 		catch(Exception e){
