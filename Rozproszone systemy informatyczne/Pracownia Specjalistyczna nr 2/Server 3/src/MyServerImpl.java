@@ -25,80 +25,69 @@ public class MyServerImpl extends UnicastRemoteObject implements MyServerInt {
     }
 
     public String Play(int position) throws RemoteException {
+
+        int row, col;
+
         switch (position) {
             case 1:
-                game[0][0] = 'x';
+                row = 0; col = 0;
                 break;
             case 2:
-                game[0][1] = 'x';
+                row = 0; col = 1;
                 break;
             case 3:
-                game[0][2] = 'x';
+                row = 0; col = 2;
                 break;
             case 4:
-                game[1][0] = 'x';
+                row = 1; col = 0;
                 break;
             case 5:
-                game[1][1] = 'x';
+                row = 1; col = 1;
                 break;
             case 6:
-                game[1][2] = 'x';
+                row = 1; col = 2;
                 break;
             case 7:
-                game[2][0] = 'x';
+                row = 2; col = 0;
                 break;
             case 8:
-                game[2][1] = 'x';
+                row = 2; col = 1;
                 break;
             case 9:
-                game[2][2] = 'x';
+                row = 2; col = 2;
                 break;
             default:
-                break;
+                return "Nieprawidłowa pozycja.";
         }
 
-        if(CheckWin()) return "Wygrał Gracz";
+        if (game[row][col] != null) {
+            return "Pole jest już zajęte, spróbuj ponownie.";
+        }
+
+        game[row][col] = 'x';
+
+        if (CheckWin()) {
+            return "Wygrał Gracz";
+        }
 
         numbers.remove(position - 1);
 
-        int n = rand.nextInt(numbers.size()) + 1;
+        int n;
+        do {
+            n = rand.nextInt(numbers.size());
+            position = numbers.get(n);
+            row = (position - 1) / 3;
+            col = (position - 1) % 3;
+        } while (game[row][col] != null);
+        
+        game[row][col] = 'o';
 
-        switch (n) {
-            case 1:
-                game[0][0] = 'o';
-                break;
-            case 2:
-                game[0][1] = 'o';
-                break;
-            case 3:
-                game[0][2] = 'o';
-                break;
-            case 4:
-                game[1][0] = 'o';
-                break;
-            case 5:
-                game[1][1] = 'o';
-                break;
-            case 6:
-                game[1][2] = 'o';
-                break;
-            case 7:
-                game[2][0] = 'o';
-                break;
-            case 8:
-                game[2][1] = 'o';
-                break;
-            case 9:
-                game[2][2] = 'o';
-                break;
-            default:
-                break;
+        numbers.remove(n);
+
+        if (CheckWin()) {
+            return "Wygrał Komputer";
         }
-
-        numbers.remove(n - 1);
-
-        if(CheckWin()) return "Wygrał Komputer";
-
+        
         return game[0][0] + " " + game[0][1] + " " + game[0][2] + " " + "\n" + game[1][0] + " " + game[1][1] + " "
                 + game[1][2] + " " + "\n" + game[2][0] + " " + game[2][1] + " " + game[2][2] + " " + "\n";
     }
