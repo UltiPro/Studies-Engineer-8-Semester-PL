@@ -36,16 +36,4 @@ public class MyServerImpl extends UnicastRemoteObject implements MyServerInt {
         }
         return null;
     }
-
-    public void Send(String text) {
-        chat.add(text);
-    }
-
-    public String getChat() {
-        String s = "";
-        for(String mess : chat){
-            s += mess+"\n";
-        }
-        return s;
-    }
 }

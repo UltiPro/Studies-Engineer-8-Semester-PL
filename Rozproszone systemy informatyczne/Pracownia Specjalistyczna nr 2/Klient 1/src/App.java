@@ -25,12 +25,6 @@ public class App {
                     case 2:
                         System.out.println(myRemoteObject.GetProduct(reader.readLine()));
                         break;
-                    case 3:
-                        
-                        break;
-                    case 4:
-                        
-                        break;
                     case 5:
                         program = false;
                         break;
