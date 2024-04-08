@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.jg.rsi;
+package webservices;
 
 import javax.xml.ws.Endpoint;
-import org.jg.rsi.ServerInfo;
 
 //Endpoint publisher
 public class WsPublisher{

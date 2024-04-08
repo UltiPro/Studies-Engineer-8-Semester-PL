@@ -23,21 +23,20 @@ public class App {
         Service service = Service.create(url, qname);
         HelloWorld hello = service.getPort(HelloWorld.class);
 
-        Map<String, Object> req_ctx = ((BindingProvider)hello).getRequestContext();
+        Map<String, Object> req_ctx = ((BindingProvider) hello).getRequestContext();
         req_ctx.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, WS_URL);
 
         Map<String, List<String>> headers = new HashMap<>();
         headers.put("Username", Collections.singletonList("admin"));
         headers.put("Password", Collections.singletonList("admin"));
         req_ctx.put(MessageContext.HTTP_REQUEST_HEADERS, headers);
-        
+
         System.out.println(hello.getHelloWorldAsString());
-        try{
+        try {
             System.out.println(hello.getErrorOrNot(true));
-        }
-        catch(Errorek e){
+        } catch (Errorek e) {
             System.out.println(e.getMessage());
-        };
-        
+        }
+        ;
     }
 }
