@@ -11,7 +11,6 @@ public class DBMotorConfiguration : IEntityTypeConfiguration<DBMotor>
         {
             Id = 1,
             Name = "a",
-            SpriteURL = null,
             RentPrice = 1000,
             RentTo = null
         },
@@ -19,7 +18,6 @@ public class DBMotorConfiguration : IEntityTypeConfiguration<DBMotor>
         {
             Id = 2,
             Name = "b",
-            SpriteURL = null,
             RentPrice = 1000,
             RentTo = null
         },
@@ -27,7 +25,6 @@ public class DBMotorConfiguration : IEntityTypeConfiguration<DBMotor>
         {
             Id = 3,
             Name = "c",
-            SpriteURL = null,
             RentPrice = 1000,
             RentTo = null
         },
@@ -35,7 +32,6 @@ public class DBMotorConfiguration : IEntityTypeConfiguration<DBMotor>
         {
             Id = 4,
             Name = "d",
-            SpriteURL = null,
             RentPrice = 1000,
             RentTo = null
         },
@@ -43,7 +39,6 @@ public class DBMotorConfiguration : IEntityTypeConfiguration<DBMotor>
         {
             Id = 5,
             Name = "e",
-            SpriteURL = null,
             RentPrice = 1000,
             RentTo = null
         });
