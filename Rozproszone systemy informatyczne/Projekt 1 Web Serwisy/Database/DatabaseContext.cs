@@ -5,7 +5,7 @@ namespace Projekt_1_Web_Serwisy.Database;
 
 public class DatabaseContext : DbContext
 {
-    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) {}
+    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
     public DbSet<DBMotor> Motors { get; set; }
 

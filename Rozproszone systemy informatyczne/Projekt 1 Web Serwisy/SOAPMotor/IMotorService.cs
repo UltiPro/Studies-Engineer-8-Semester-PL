@@ -7,11 +7,26 @@ namespace Projekt_1_Web_Serwisy.SOAPMotor;
 public interface IMotorService
 {
     [OperationContract]
-    public Task<List<DBMotor>> GetAll();
+    public Task Create(CreateMotor motor);
+
+    [OperationContract]
+    public Task Remove(int id);
+
+    [OperationContract]
+    public Task Update(UpdateMotor motor);
+
+    [OperationContract]
+    public Task<DetailMotor> Detail(int id);
+
+    [OperationContract]
+    public Task<List<DetailMotor>> GetAll();
+
     [OperationContract]
     public Task<string> Reserve(int id);
+
     [OperationContract]
     public Task<string> CancelReserve(int id);
+
     [OperationContract]
-    public Task<string> Rent(int id, DateTime date);
+    public Task<string> Rent(int id, int numberOfDays);
 }
