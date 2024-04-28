@@ -1,6 +1,13 @@
 from zeep import Client
+from zeep.transports import Transport
+import requests
 
-client = Client(wsdl="https://localhost:7107/Motor.wsdl")
+session = requests.Session()
+session.verify = "./cert.crt"
+
+client = Client(
+    wsdl="https://localhost:7107/Motor.wsdl", transport=Transport(session=session)
+)
 
 # print(client.service.Create({"Name" : "test", "RentPrice": 1024}))
 # print(client.service.Remove(7))
