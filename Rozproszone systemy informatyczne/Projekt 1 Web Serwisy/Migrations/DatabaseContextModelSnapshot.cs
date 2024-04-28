@@ -43,9 +43,6 @@ namespace Projekt_1_Web_Serwisy.Migrations
                     b.Property<bool>("Reservation")
                         .HasColumnType("bit");
 
-                    b.Property<string>("SpriteURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Motors");

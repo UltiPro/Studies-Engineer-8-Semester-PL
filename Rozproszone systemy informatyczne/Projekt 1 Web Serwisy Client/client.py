@@ -1,6 +1,6 @@
 from zeep import Client
 
-client = Client(wsdl="http://localhost:5045/Motor.wsdl")
+client = Client(wsdl="https://localhost:7107/Motor.wsdl")
 
 # print(client.service.Create({"Name" : "test", "RentPrice": 1024}))
 # print(client.service.Remove(7))

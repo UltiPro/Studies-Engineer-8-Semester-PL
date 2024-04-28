@@ -12,7 +12,7 @@ using Projekt_1_Web_Serwisy.Database;
 namespace Projekt_1_Web_Serwisy.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240421142209_init")]
+    [Migration("20240428185235_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -43,8 +43,8 @@ namespace Projekt_1_Web_Serwisy.Migrations
                     b.Property<DateTime?>("RentTo")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SpriteURL")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Reservation")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -55,31 +55,36 @@ namespace Projekt_1_Web_Serwisy.Migrations
                         {
                             Id = 1,
                             Name = "a",
-                            RentPrice = 1000
+                            RentPrice = 1000,
+                            Reservation = false
                         },
                         new
                         {
                             Id = 2,
                             Name = "b",
-                            RentPrice = 1000
+                            RentPrice = 1000,
+                            Reservation = false
                         },
                         new
                         {
                             Id = 3,
                             Name = "c",
-                            RentPrice = 1000
+                            RentPrice = 1000,
+                            Reservation = false
                         },
                         new
                         {
                             Id = 4,
                             Name = "d",
-                            RentPrice = 1000
+                            RentPrice = 1000,
+                            Reservation = false
                         },
                         new
                         {
                             Id = 5,
                             Name = "e",
-                            RentPrice = 1000
+                            RentPrice = 1000,
+                            Reservation = false
                         });
                 });
 #pragma warning restore 612, 618

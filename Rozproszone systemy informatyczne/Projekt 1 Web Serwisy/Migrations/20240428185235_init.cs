@@ -20,9 +20,9 @@ namespace Projekt_1_Web_Serwisy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SpriteURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RentPrice = table.Column<int>(type: "int", nullable: false),
-                    RentTo = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    RentTo = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Reservation = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,14 +31,14 @@ namespace Projekt_1_Web_Serwisy.Migrations
 
             migrationBuilder.InsertData(
                 table: "Motors",
-                columns: new[] { "Id", "Name", "RentPrice", "RentTo", "SpriteURL" },
+                columns: new[] { "Id", "Name", "RentPrice", "RentTo", "Reservation" },
                 values: new object[,]
                 {
-                    { 1, "a", 1000, null, null },
-                    { 2, "b", 1000, null, null },
-                    { 3, "c", 1000, null, null },
-                    { 4, "d", 1000, null, null },
-                    { 5, "e", 1000, null, null }
+                    { 1, "a", 1000, null, false },
+                    { 2, "b", 1000, null, false },
+                    { 3, "c", 1000, null, false },
+                    { 4, "d", 1000, null, false },
+                    { 5, "e", 1000, null, false }
                 });
         }
 

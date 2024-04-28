@@ -15,6 +15,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 builder.Services.AddSoapCore();
 builder.Services.AddScoped<IMotorService, MotorService>();
 
+
 // Add services to the container.
 // builder.Services.AddRazorPages();
 
@@ -24,8 +25,12 @@ var app = builder.Build();
 /*if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-}
-app.UseStaticFiles();*/
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}*/
+
+app.UseHttpsRedirection();
+// app.UseStaticFiles();
 
 app.UseRouting();
 
@@ -34,8 +39,8 @@ app.UseEndpoints(endpoints =>
     endpoints.UseSoapEndpoint<IMotorService>("/Motor.wsdl", new SoapEncoderOptions(), SoapSerializer.XmlSerializer);
 });
 
-//app.UseAuthorization();
+// app.UseAuthorization();
 
-//app.MapRazorPages();
+// app.MapRazorPages();
 
 app.Run();
