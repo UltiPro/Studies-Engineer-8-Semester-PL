@@ -29,3 +29,5 @@ print(client.service.Detail(3))
 print(client.service.Rent(3, 4)) 
 print(client.service.Detail(3))
 """
+
+print(client.service.GeneratePDF(1))

@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projekt_1_Web_Serwisy.Database;
 using Projekt_1_Web_Serwisy.Models;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace Projekt_1_Web_Serwisy.SOAPMotor;
 
@@ -129,5 +132,53 @@ public class MotorService : IMotorService
         await _context.SaveChangesAsync();
 
         return $"The motorbike has been rented to {rentDate}.";
+    }
+
+    public void GeneratePDF(int id)
+    {
+        QuestPDF.Settings.License = LicenseType.Community;
+
+        Document.Create(container =>
+        {
+            container.Page(page =>
+            {
+                page.Margin(50);
+                page.Size(PageSizes.A4);
+                page.PageColor(Colors.White);
+                page.DefaultTextStyle(x => x.FontSize(16));
+
+                page.Header()
+                    .AlignCenter()
+                    .Text("jeakis tekst tutaj wstaw")
+                    .SemiBold().FontSize(24).FontColor(Colors.Grey.Darken4);
+
+                page.Content()
+                    .Table(table =>
+                    {
+                        table.ColumnsDefinition(columns =>
+                        {
+                            columns.ConstantColumn(20);
+                            columns.RelativeColumn();
+                            columns.RelativeColumn();
+                        });
+
+                        table.Header(header =>
+                        {
+                            header.Cell().Text("#");
+                            header.Cell().Text("Product");
+                            header.Cell().AlignRight().Text("Price");
+                        });
+
+                        /*foreach (var lineItem in lineItems)
+                        {
+                            
+                        }*/
+
+                        table.Cell().Text("1");
+                        table.Cell().Text("motór");
+                        table.Cell().Text("duzio");
+                    });
+            });
+        }).GeneratePdf("test.pdf");
     }
 }

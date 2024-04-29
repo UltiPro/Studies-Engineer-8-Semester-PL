@@ -29,4 +29,7 @@ public interface IMotorService
 
     [OperationContract]
     public Task<string> Rent(int id, int numberOfDays);
+
+    [OperationContract]
+    public void GeneratePDF(int id);
 }
