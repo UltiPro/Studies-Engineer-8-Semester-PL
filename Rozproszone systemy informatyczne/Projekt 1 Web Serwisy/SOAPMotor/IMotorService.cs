@@ -31,5 +31,5 @@ public interface IMotorService
     public Task<string> Rent(int id, int numberOfDays);
 
     [OperationContract]
-    public void GeneratePDF(int id);
+    public Task<byte[]?> GeneratePDF(int id);
 }

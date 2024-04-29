@@ -134,8 +134,15 @@ public class MotorService : IMotorService
         return $"The motorbike has been rented to {rentDate}.";
     }
 
-    public void GeneratePDF(int id)
+    public async Task<byte[]?> GeneratePDF(int id)
     {
+        var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
+
+        if (motor is null) return null;
+
+        string invoiceName = $"Invoice {DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}" +
+            $"{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.pdf";
+
         QuestPDF.Settings.License = LicenseType.Community;
 
         Document.Create(container =>
@@ -147,38 +154,29 @@ public class MotorService : IMotorService
                 page.PageColor(Colors.White);
                 page.DefaultTextStyle(x => x.FontSize(16));
 
-                page.Header()
-                    .AlignCenter()
-                    .Text("jeakis tekst tutaj wstaw")
-                    .SemiBold().FontSize(24).FontColor(Colors.Grey.Darken4);
+                page.Header().AlignCenter().Text($"{motor.Name}").Bold().FontSize(24).FontColor(Colors.Grey.Darken4);
 
-                page.Content()
-                    .Table(table =>
+                page.Content().Table(table =>
+                {
+                    table.ColumnsDefinition(columns =>
                     {
-                        table.ColumnsDefinition(columns =>
-                        {
-                            columns.ConstantColumn(20);
-                            columns.RelativeColumn();
-                            columns.RelativeColumn();
-                        });
-
-                        table.Header(header =>
-                        {
-                            header.Cell().Text("#");
-                            header.Cell().Text("Product");
-                            header.Cell().AlignRight().Text("Price");
-                        });
-
-                        /*foreach (var lineItem in lineItems)
-                        {
-                            
-                        }*/
-
-                        table.Cell().Text("1");
-                        table.Cell().Text("motór");
-                        table.Cell().Text("duzio");
+                        columns.ConstantColumn(20);
+                        columns.RelativeColumn();
+                        columns.RelativeColumn();
                     });
+                    table.Header(header =>
+                    {
+                        header.Cell().Text("#");
+                        header.Cell().Text("Motorbike");
+                        header.Cell().AlignRight().Text("Rent Price");
+                    });
+                    table.Cell().Text(motor.Id.ToString());
+                    table.Cell().Text(motor.Name);
+                    table.Cell().AlignRight().Text(motor.RentPrice.ToString());
+                });
             });
-        }).GeneratePdf("test.pdf");
+        }).GeneratePdf(invoiceName);
+
+        return File.ReadAllBytes(invoiceName);
     }
 }
