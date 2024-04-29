@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projekt_1_Web_Serwisy.Database;
+using Projekt_1_Web_Serwisy.Exceptions;
 using Projekt_1_Web_Serwisy.Models;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
@@ -31,7 +32,7 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null) return;
+        if (motor is null) throw new NotFoundException(id);
 
         _context.Motors.Remove(motor);
 
@@ -42,7 +43,7 @@ public class MotorService : IMotorService
     {
         var motor2 = await _context.Motors.FirstOrDefaultAsync(m => m.Id == motor.Id);
 
-        if (motor2 is null) return;
+        if (motor2 is null) throw new NotFoundException(motor.Id);
 
         motor2.Name = motor.Name;
         motor2.RentPrice = motor.RentPrice;
@@ -54,7 +55,7 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null) return null;
+        if (motor is null) throw new NotFoundException(id);
 
         return new DetailMotor
         {
@@ -91,9 +92,9 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null) return "Incorrect ID of motorbike.";
+        if (motor is null) throw new NotFoundException(id);
 
-        if (motor.Reservation) return "This motorbike is already reserved!";
+        if (motor.Reservation) throw new MotorbikeReservedException();
 
         motor.Reservation = true;
 
@@ -106,9 +107,9 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null) return "Incorrect ID of motorbike.";
+        if (motor is null) throw new NotFoundException(id);
 
-        if (!motor.Reservation) return "This motorbike is not reserved!";
+        if (!motor.Reservation) throw new MotorbikeNotReservedException();
 
         motor.Reservation = false;
 
@@ -121,11 +122,12 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null) return "Incorrect ID of motorbike.";
+        if (motor is null) throw new NotFoundException(id);
 
         var rentDate = DateTime.Now.AddDays(numberOfDays);
 
-        if (motor.RentTo != null && motor.RentTo > DateTime.Now) return $"Motorbike can not be rent before {motor.RentTo}.";
+        if (motor.RentTo != null && motor.RentTo > DateTime.Now)
+            throw new MotorbikeCannotBeRentException(motor.RentTo ?? DateTime.Now);
 
         motor.RentTo = rentDate;
 
@@ -138,45 +140,52 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null || motor.RentTo < DateTime.Now) return null;
+        if (motor is null || motor.RentTo is null || motor.RentTo < DateTime.Now) throw new NotFoundException(id);
 
         string invoiceName = $"Invoice {DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}" +
             $"{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.pdf";
 
-        QuestPDF.Settings.License = LicenseType.Community;
-
-        Document.Create(container =>
+        try
         {
-            container.Page(page =>
+            QuestPDF.Settings.License = LicenseType.Community;
+
+            Document.Create(container =>
             {
-                page.Margin(50);
-                page.Size(PageSizes.A4);
-                page.PageColor(Colors.White);
-                page.DefaultTextStyle(x => x.FontSize(16));
-
-                page.Header().AlignCenter().Text($"{motor.Name}").Bold().FontSize(24).FontColor(Colors.Grey.Darken4);
-
-                page.Content().Table(table =>
+                container.Page(page =>
                 {
-                    table.ColumnsDefinition(columns =>
-                    {
-                        columns.ConstantColumn(20);
-                        columns.RelativeColumn();
-                        columns.RelativeColumn();
-                    });
-                    table.Header(header =>
-                    {
-                        header.Cell().Text("#");
-                        header.Cell().Text("Motorbike");
-                        header.Cell().AlignRight().Text("Rent Price");
-                    });
-                    table.Cell().Text(motor.Id.ToString());
-                    table.Cell().Text(motor.Name);
-                    table.Cell().AlignRight().Text(motor.RentPrice.ToString());
-                });
-            });
-        }).GeneratePdf(invoiceName);
+                    page.Margin(50);
+                    page.Size(PageSizes.A4);
+                    page.PageColor(Colors.White);
+                    page.DefaultTextStyle(x => x.FontSize(16));
 
-        return File.ReadAllBytes(invoiceName);
+                    page.Header().AlignCenter().Text($"{motor.Name}").Bold().FontSize(24).FontColor(Colors.Grey.Darken4);
+
+                    page.Content().Table(table =>
+                    {
+                        table.ColumnsDefinition(columns =>
+                        {
+                            columns.ConstantColumn(20);
+                            columns.RelativeColumn();
+                            columns.RelativeColumn();
+                        });
+                        table.Header(header =>
+                        {
+                            header.Cell().Text("#");
+                            header.Cell().Text("Motorbike");
+                            header.Cell().AlignRight().Text("Rent Price");
+                        });
+                        table.Cell().Text(motor.Id.ToString());
+                        table.Cell().Text(motor.Name);
+                        table.Cell().AlignRight().Text(motor.RentPrice.ToString());
+                    });
+                });
+            }).GeneratePdf(invoiceName);
+
+            return File.ReadAllBytes(invoiceName);
+        }
+        catch
+        {
+            throw new CouldNotCreateInvoiceException(id);
+        }
     }
 }

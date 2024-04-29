@@ -4,6 +4,7 @@ using SoapCore;
 using Microsoft.EntityFrameworkCore;
 using Projekt_1_Web_Serwisy.Database;
 using Projekt_1_Web_Serwisy.SOAPMotor;
+using Projekt_1_Web_Serwisy.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,8 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.UseSoapEndpoint<IMotorService>("/Motor.wsdl", new SoapEncoderOptions(), SoapSerializer.XmlSerializer);
 });
+
+app.UseSoapExceptionMiddleware();
 
 // app.UseAuthorization();
 
