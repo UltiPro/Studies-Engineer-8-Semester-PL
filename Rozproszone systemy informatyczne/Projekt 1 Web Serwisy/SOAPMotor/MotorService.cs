@@ -125,7 +125,7 @@ public class MotorService : IMotorService
 
         var rentDate = DateTime.Now.AddDays(numberOfDays);
 
-        if (motor.RentTo != null && motor.RentTo < DateTime.Now) return $"Motorbike can not be rent before {motor.RentTo}.";
+        if (motor.RentTo != null && motor.RentTo > DateTime.Now) return $"Motorbike can not be rent before {motor.RentTo}.";
 
         motor.RentTo = rentDate;
 
@@ -138,7 +138,7 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null) return null;
+        if (motor is null || motor.RentTo < DateTime.Now) return null;
 
         string invoiceName = $"Invoice {DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}" +
             $"{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.pdf";
