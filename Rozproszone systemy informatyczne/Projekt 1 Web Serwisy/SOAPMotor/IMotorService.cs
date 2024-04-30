@@ -22,13 +22,13 @@ public interface IMotorService
     public Task<List<DetailMotor>> GetAll();
 
     [OperationContract]
-    public Task<string> Reserve(int id);
+    public Task Reserve(int id);
 
     [OperationContract]
-    public Task<string> CancelReserve(int id);
+    public Task CancelReserve(int id);
 
     [OperationContract]
-    public Task<string> Rent(int id, int numberOfDays);
+    public Task Rent(int id, int numberOfDays);
 
     [OperationContract]
     public Task<byte[]?> GeneratePDF(int id);

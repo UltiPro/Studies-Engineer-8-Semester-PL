@@ -88,7 +88,7 @@ public class MotorService : IMotorService
         return list;
     }
 
-    public async Task<string> Reserve(int id)
+    public async Task Reserve(int id)
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
@@ -99,11 +99,9 @@ public class MotorService : IMotorService
         motor.Reservation = true;
 
         await _context.SaveChangesAsync();
-
-        return $"The motorbike has been reserved.";
     }
 
-    public async Task<string> CancelReserve(int id)
+    public async Task CancelReserve(int id)
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
@@ -114,11 +112,9 @@ public class MotorService : IMotorService
         motor.Reservation = false;
 
         await _context.SaveChangesAsync();
-
-        return $"The motorbike is no longer reserved.";
     }
 
-    public async Task<string> Rent(int id, int numberOfDays)
+    public async Task Rent(int id, int numberOfDays)
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
@@ -132,8 +128,6 @@ public class MotorService : IMotorService
         motor.RentTo = rentDate;
 
         await _context.SaveChangesAsync();
-
-        return $"The motorbike has been rented to {rentDate}.";
     }
 
     public async Task<byte[]?> GeneratePDF(int id)
