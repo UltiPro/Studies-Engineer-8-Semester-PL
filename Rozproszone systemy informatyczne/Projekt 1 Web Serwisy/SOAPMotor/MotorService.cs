@@ -140,7 +140,9 @@ public class MotorService : IMotorService
     {
         var motor = await _context.Motors.FirstOrDefaultAsync(motor => motor.Id == id);
 
-        if (motor is null || motor.RentTo is null || motor.RentTo < DateTime.Now) throw new NotFoundException(id);
+        if (motor is null) throw new NotFoundException(id);
+
+        if (motor.RentTo is null || motor.RentTo < DateTime.Now) throw new ThisMotorbikeIsNotRentedException();
 
         string invoiceName = $"Invoice {DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}" +
             $"{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.pdf";
