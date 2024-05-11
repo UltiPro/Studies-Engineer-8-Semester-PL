@@ -21,7 +21,10 @@ public class MotorService : IMotorService
     {
         await _context.Motors.AddAsync(new DBMotor
         {
+            Brand = motor.Brand,
             Name = motor.Name,
+            Description = motor.Description,
+            RequiredLicence = motor.RequiredLicence,
             RentPrice = motor.RentPrice
         });
 
@@ -45,7 +48,10 @@ public class MotorService : IMotorService
 
         if (motor2 is null) throw new NotFoundException(motor.Id);
 
+        motor2.Brand = motor.Brand;
         motor2.Name = motor.Name;
+        motor2.Description = motor.Description;
+        motor2.RequiredLicence = motor.RequiredLicence;
         motor2.RentPrice = motor.RentPrice;
 
         await _context.SaveChangesAsync();
@@ -60,8 +66,11 @@ public class MotorService : IMotorService
         return new DetailMotor
         {
             Id = motor.Id,
+            Brand = motor.Brand,   
             Name = motor.Name,
             RentPrice = motor.RentPrice,
+            Description = motor.Description,
+            RequiredLicence = motor.RequiredLicence.ToString(),
             RentTo = motor.RentTo.ToString() ?? "",
             Reservation = motor.Reservation ? "Reserved" : "Not reserved"
         };
@@ -78,8 +87,11 @@ public class MotorService : IMotorService
             list.Add(new DetailMotor
             {
                 Id = motor.Id,
+                Brand = motor.Brand,
                 Name = motor.Name,
                 RentPrice = motor.RentPrice,
+                Description = motor.Description,
+                RequiredLicence = motor.RequiredLicence.ToString(),
                 RentTo = motor.RentTo.ToString() ?? "",
                 Reservation = motor.Reservation ? "Reserved" : "Not reserved"
             });
