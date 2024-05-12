@@ -163,6 +163,7 @@ public class MotorService : IMotorService
             throw new MotorbikeCannotBeRentException(motor.RentTo ?? DateTime.Now);
 
         motor.RentTo = rentDate;
+        motor.Reservation = false;
 
         await _context.SaveChangesAsync();
     }
