@@ -211,7 +211,7 @@ public class MotorService : IMotorService
                             });
                             table.Cell().Text(motor.Id.ToString());
                             table.Cell().Text($"{motor.Name}");
-                            table.Cell().AlignRight().Text(motor.RentPrice.ToString());
+                            table.Cell().AlignRight().Text($"{motor.RentPrice} zł");
                         });
 
                         col.Item().TranslateY(4).LineHorizontal(2);
