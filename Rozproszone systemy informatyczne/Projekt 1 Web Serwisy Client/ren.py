@@ -93,6 +93,15 @@ class MotorcycleRentalApp:
             for widget in self.table_frame.winfo_children():
                 widget.destroy()
 
+            tk.Label(self.table_frame, text="ID", font=('Arial', 10, 'bold')).grid(row=0, column=0, padx=5, pady=5)
+            tk.Label(self.table_frame, text="Marka", font=('Arial', 10, 'bold')).grid(row=0, column=1, padx=5, pady=5)
+            tk.Label(self.table_frame, text="Nazwa", font=('Arial', 10, 'bold')).grid(row=0, column=2, padx=5, pady=5)
+            tk.Label(self.table_frame, text="Wymagane prawo jazdy", font=('Arial', 10, 'bold')).grid(row=0, column=3, padx=5, pady=5)
+            tk.Label(self.table_frame, text="Wynajęty do",font=('Arial', 10, 'bold')).grid(row=0, column=4, padx=5, pady=5)
+            tk.Label(self.table_frame, text="Rezerwacja", font=('Arial', 10, 'bold')).grid(row=0, column=5, padx=5, pady=5) 
+            tk.Label(self.table_frame, text="Cena za dobę", font=('Arial', 10, 'bold')).grid(row=0, column=6, padx=5, pady=5)
+            tk.Label(self.table_frame, text="Opcje", font=('Arial', 10, 'bold')).grid(row=0, column=7, padx=5, pady=5)
+
             # Dodaj nowe wpisy
             for i, motor in enumerate(motorcycles):
                 tk.Label(self.table_frame, text=motor["Id"]).grid(row=i+1, column=0, padx=5, pady=5)
