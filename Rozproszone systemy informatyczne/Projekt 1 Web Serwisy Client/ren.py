@@ -15,6 +15,7 @@ class MotorcycleRentalApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Motorcycle Rental App")
+        self.current_brand_filter = ""
         self.create_gui()
 
         # Inicjalizacja klienta SOAP
@@ -63,6 +64,8 @@ class MotorcycleRentalApp:
 
             # Dodanie danych do tabeli
             for i, motor in enumerate(motorcycles):
+                if self.current_brand_filter and self.current_brand_filter != motor["Brand"]:
+                    continue
                 tk.Label(self.table_frame, text=motor["Id"]).grid(row=i+1, column=0, padx=5, pady=5)
                 tk.Label(self.table_frame, text=motor["Brand"]).grid(row=i+1, column=1, padx=5, pady=5)
                 tk.Label(self.table_frame, text=motor["Name"]).grid(row=i+1, column=2, padx=5, pady=5)
@@ -82,9 +85,9 @@ class MotorcycleRentalApp:
             messagebox.showerror("Błąd", str(e))
 
     def filter_motorcycles(self):
-        brand = self.brand_filter_entry.get()
+        self.current_brand_filter = self.brand_filter_entry.get()
         try:
-            motorcycles = self.client.service.FilterByBrand(brand)
+            motorcycles = self.client.service.GetSelected(self.current_brand_filter)
 
             for widget in self.table_frame.winfo_children():
                 widget.destroy()
