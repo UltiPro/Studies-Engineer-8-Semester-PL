@@ -79,6 +79,7 @@ class MotorcycleRentalApp:
                 tk.Button(options_frame, text="Edytuj", command=lambda id=motor["Id"]: self.edit_motorcycle(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="Szczegóły", command=lambda id=motor["Id"]: self.show_motorcycle_details(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="Rezerwuj", command=lambda id=motor["Id"]: self.reserve_motorcycle(id)).pack(side=tk.LEFT, padx=2)
+                tk.Button(options_frame, text="Anuluj rezerwację", command=lambda id=motor["Id"]: self.cancel_reservation(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="Wypożycz", command=lambda id=motor["Id"]: self.rent_motorcycle(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="PDF", command=lambda id=motor["Id"]: self.generate_pdf(id)).pack(side=tk.LEFT, padx=2)
         except Exception as e:
@@ -107,6 +108,7 @@ class MotorcycleRentalApp:
                 tk.Button(options_frame, text="Edytuj", command=lambda id=motor["Id"]: self.edit_motorcycle(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="Szczegóły", command=lambda id=motor["Id"]: self.show_motorcycle_details(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="Rezerwuj", command=lambda id=motor["Id"]: self.reserve_motorcycle(id)).pack(side=tk.LEFT, padx=2)
+                tk.Button(options_frame, text="Anuluj rezerwację", command=lambda id=motor["Id"]: self.cancel_reservation(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="Wypożycz", command=lambda id=motor["Id"]: self.rent_motorcycle(id)).pack(side=tk.LEFT, padx=2)
                 tk.Button(options_frame, text="PDF", command=lambda id=motor["Id"]: self.generate_pdf(id)).pack(side=tk.LEFT, padx=2)
         except Exception as e:
@@ -159,6 +161,14 @@ class MotorcycleRentalApp:
         try:
             self.client.service.Reserve(id)
             messagebox.showinfo("Sukces", "Motocykl został zarezerwowany pomyślnie.")
+            self.display_motorcycles()
+        except Exception as e:
+            messagebox.showerror("Błąd", str(e))
+
+    def cancel_reservation(self, id):
+        try:
+            self.client.service.CancelReserve(id)
+            messagebox.showinfo("Sukces", "Rezerwacja motocykla została anulowana pomyślnie.")
             self.display_motorcycles()
         except Exception as e:
             messagebox.showerror("Błąd", str(e))
