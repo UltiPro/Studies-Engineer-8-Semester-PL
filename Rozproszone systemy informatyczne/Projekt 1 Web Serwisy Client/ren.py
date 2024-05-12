@@ -110,7 +110,7 @@ class MotorcycleRentalApp:
                 tk.Label(self.table_frame, text=motor["RequiredLicence"]).grid(row=i+1, column=3, padx=5, pady=5)
                 tk.Label(self.table_frame, text=motor["RentTo"]).grid(row=i+1, column=4, padx=5, pady=5)
                 tk.Label(self.table_frame, text=motor["Reservation"]).grid(row=i+1, column=5, padx=5, pady=5)
-                tk.Label(self.table_frame, text=motor["RentPrice"]).grid(row=i+1, column=6, padx=5, pady=5)
+                tk.Label(self.table_frame, text=str(motor["RentPrice"]) + " zł").grid(row=i+1, column=6, padx=5, pady=5)
                 options_frame = tk.Frame(self.table_frame)
                 options_frame.grid(row=i+1, column=7, padx=5, pady=5)
                 tk.Button(options_frame, text="Usuń", command=lambda id=motor["Id"]: self.remove_motorcycle(id)).pack(side=tk.LEFT, padx=2)
