@@ -22,6 +22,9 @@ public interface IMotorService
     public Task<List<DetailMotor>> GetAll();
 
     [OperationContract]
+    public Task<List<DetailMotor>> GetSelected(string brandString);
+
+    [OperationContract]
     public Task Reserve(int id);
 
     [OperationContract]

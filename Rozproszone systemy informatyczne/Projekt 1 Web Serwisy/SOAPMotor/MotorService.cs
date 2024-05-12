@@ -5,6 +5,7 @@ using Projekt_1_Web_Serwisy.Models;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using System.ServiceModel;
 
 namespace Projekt_1_Web_Serwisy.SOAPMotor;
 
@@ -66,7 +67,7 @@ public class MotorService : IMotorService
         return new DetailMotor
         {
             Id = motor.Id,
-            Brand = motor.Brand,   
+            Brand = motor.Brand,
             Name = motor.Name,
             RentPrice = motor.RentPrice,
             Description = motor.Description,
@@ -79,6 +80,30 @@ public class MotorService : IMotorService
     public async Task<List<DetailMotor>> GetAll()
     {
         var motors = await _context.Motors.ToListAsync();
+
+        var list = new List<DetailMotor>();
+
+        foreach (var motor in motors)
+        {
+            list.Add(new DetailMotor
+            {
+                Id = motor.Id,
+                Brand = motor.Brand,
+                Name = motor.Name,
+                RentPrice = motor.RentPrice,
+                Description = motor.Description,
+                RequiredLicence = motor.RequiredLicence.ToString(),
+                RentTo = motor.RentTo.ToString() ?? "",
+                Reservation = motor.Reservation ? "Reserved" : "Not reserved"
+            });
+        }
+
+        return list;
+    }
+
+    public async Task<List<DetailMotor>> GetSelected(string brandString)
+    {
+        var motors = await _context.Motors.Where(motor => motor.Brand.Contains(brandString)).ToListAsync();
 
         var list = new List<DetailMotor>();
 
@@ -166,25 +191,32 @@ public class MotorService : IMotorService
                     page.PageColor(Colors.White);
                     page.DefaultTextStyle(x => x.FontSize(16));
 
-                    page.Header().AlignCenter().Text($"{motor.Name}").Bold().FontSize(24).FontColor(Colors.Grey.Darken4);
+                    page.Header().AlignCenter().Text($"{motor.Brand}").Bold().FontSize(24).FontColor(Colors.Grey.Darken4);
 
-                    page.Content().Table(table =>
+                    page.Content().Column(col =>
                     {
-                        table.ColumnsDefinition(columns =>
+                        col.Item().Table(table =>
                         {
-                            columns.ConstantColumn(20);
-                            columns.RelativeColumn();
-                            columns.RelativeColumn();
+                            table.ColumnsDefinition(columns =>
+                            {
+                                columns.ConstantColumn(30);
+                                columns.RelativeColumn();
+                                columns.RelativeColumn();
+                            });
+                            table.Header(header =>
+                            {
+                                header.Cell().Text("#");
+                                header.Cell().Text("Motorbike");
+                                header.Cell().AlignRight().Text("Rent Price");
+                            });
+                            table.Cell().Text(motor.Id.ToString());
+                            table.Cell().Text($"{motor.Name}");
+                            table.Cell().AlignRight().Text(motor.RentPrice.ToString());
                         });
-                        table.Header(header =>
-                        {
-                            header.Cell().Text("#");
-                            header.Cell().Text("Motorbike");
-                            header.Cell().AlignRight().Text("Rent Price");
-                        });
-                        table.Cell().Text(motor.Id.ToString());
-                        table.Cell().Text(motor.Name);
-                        table.Cell().AlignRight().Text(motor.RentPrice.ToString());
+
+                        col.Item().TranslateY(4).LineHorizontal(2);
+
+                        col.Item().TranslateY(20).Text($"{motor.Description}");
                     });
                 });
             }).GeneratePdf(invoiceName);

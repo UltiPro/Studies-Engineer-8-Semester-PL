@@ -30,8 +30,12 @@ try:
     print(client.service.Rent(1, 4)) 
     print(client.service.Detail(3))
     """
-
+ 
     """
+    print(client.service.GetSelected("da"))
+    """
+    
+    '''
     response = client.service.GeneratePDF(1)
 
     file_path = './file.pdf'
@@ -39,7 +43,8 @@ try:
         file.write(response)
 
     print(f'Plik zapisano jako: {file_path}')
-    """
+    '''
+
 except Exception as e:
     print(e)
 
