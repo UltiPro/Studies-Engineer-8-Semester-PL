@@ -66,22 +66,22 @@ public class MessageController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("/query")]
+    [HttpGet("query")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public ActionResult GetQuery([FromQuery] int id) => Ok(id);
 
-    [HttpGet("/header")]
+    [HttpGet("header")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public ActionResult GetHeader([FromHeader] int id) => Ok(id);
 
-    [HttpPost("/matrix")]
+    [HttpPost("matrix")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public ActionResult GetMatrix([FromBody] params bool[] bools) => Ok(bools);
 
-    [HttpGet("/context")]
+    [HttpGet("context")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public ActionResult GetContext([FromHeader] int id, [FromQuery] string napis)
@@ -98,4 +98,11 @@ public class MessageController : ControllerBase
 
         return Ok(text);
     }
+
+    [HttpGet("startWith")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public ActionResult GetString(string startWith)
+        => Ok(messages.Where(message => message.MessageText.StartsWith(startWith, StringComparison.OrdinalIgnoreCase)));
+
 }
