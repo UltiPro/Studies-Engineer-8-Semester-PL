@@ -49,6 +49,58 @@ if __name__ == "__main__":
 # by agregate
 # db.Title.aggregate({$match:{primaryTitle:"Casablanca", startYear:1942}}, {$lookup:{from:"Rating", localField:"tconst", foreignField:"tconst", as:"joinRating"}})
 
+"""
+--------Zadanie 14----------------------------------------
+
+Do dokumentu opisującego film o nazwie Forrest Gump z 1994 roku dodaj dwie oceny filmu. Niech pole
+
+ratings będzie tablicą dokumentów, które zawierają datę oceny oraz wartość oceny, np:
+
+[{date: new Date(), value:8}, {date: new Date(), value: 10}]. 
+
+
+
+db.Title.updateMany({primaryTitle:"Forrest Gump",startYear:1994},
+
+		{$set: {ratings: 
+
+			[{date: new Date(), value:8}, 
+
+			{date: new Date(), value: 10}]
+
+		} })
+
+
+
+--------Zadanie 15----------------------------------------
+
+Do dokumentu opisującego film o nazwie Forrest Gump z 1994 roku dodaj kolejne dwie oceny. Uwaga: w
+
+tablicy ratings powinny się znaleźć co najwyżej 3 najwyższe oceny. 
+
+
+
+db.Title.updateOne({primaryTitle:"Forrest Gump", 
+
+			startYear: 1994},
+
+{$push: {ratings:{ $each:
+
+			[ {date: new Date(), value:9.5}, 
+
+			{date: new Date(), value: 7}],
+
+			     $sort:{value:-1},
+
+			     $slice:3 
+
+		         }
+
+	 }
+
+});
+"""
+
 ### PS 12
 
 # Zad 1
