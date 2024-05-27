@@ -37,6 +37,13 @@ public class MessageController : ControllerBase
     {
         var message = messages.FirstOrDefault(x => x.Id == id);
         if (message is null) return NotFound("Message not found.");
+
+        message.links = new List<Link>()
+        {
+            new Link(HttpContext.Request.GetDisplayUrl(),"self"),
+            new Link(HttpContext.Request.GetDisplayUrl()+"/comments","comments"),
+        };
+
         return Ok(message);
     }
 
@@ -56,9 +63,11 @@ public class MessageController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public ActionResult Post(PostMessage postMessage)
     {
-        messages.Add(new Message(messages.Last().Id + 1, postMessage));
+        int id = messages.Last().Id + 1;
 
-        Response.Headers.Add("Location", HttpContext.Request.GetDisplayUrl() + "/" + messages.Last().Id);
+        messages.Add(new Message(id, postMessage));
+
+        Response.Headers.Append("X-Location", HttpContext.Request.GetDisplayUrl() + "/" + id);
 
         return Created();
     }

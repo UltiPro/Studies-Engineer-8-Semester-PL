@@ -6,6 +6,7 @@ public class Message
     public string Author { get; set; }
     public string MessageText { get; set; }
     public DateTime DateTime { get; set; }
+    public List<Link>? links { get; set; }
 
     public Message(int Id, string Author, string MessageText, DateTime DateTime)
     {
