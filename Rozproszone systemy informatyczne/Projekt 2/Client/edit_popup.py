@@ -1,18 +1,28 @@
 import tkinter as tk
 from tkinter import messagebox
 
+import requests
+
 
 class EditMotorcyclePopup:
-    def __init__(self, parent, client, id, update_callback):
+    def __init__(self, parent, base_url, cert_path, cert_key, id, update_callback):
         self.parent = parent
-        self.client = client
+        self.base_url = base_url
+        self.cert_path = cert_path
+        self.cert_key = cert_key
         self.id = id
         self.update_callback = update_callback
         self.popup = tk.Toplevel(parent)
         self.popup.title("Edytuj motocykl")
 
         try:
-            motorcycle = self.client.service.Detail(id)
+            response = requests.get(
+                f"{self.base_url}?id={self.id}",
+                cert=(self.cert_path, self.cert_key),
+                verify=False
+            )
+            response.raise_for_status()
+            motorcycle = response.json()
         except Exception as e:
             messagebox.showerror("Błąd", str(e))
             self.popup.destroy()
@@ -39,11 +49,11 @@ class EditMotorcyclePopup:
         self.description_entry = tk.Text(self.popup, wrap=tk.WORD, width=80, height=10)
         self.description_entry.grid(row=4, column=1, padx=10, pady= 5)
 
-        self.brand_entry.insert(0, motorcycle["Brand"])
-        self.name_entry.insert(0, motorcycle["Name"])
-        self.licence_entry.insert(0, motorcycle["RequiredLicence"])
-        self.price_entry.insert(0, motorcycle["RentPrice"])
-        self.description_entry.insert("1.0", motorcycle["Description"])
+        self.brand_entry.insert(0, motorcycle["brand"])
+        self.name_entry.insert(0, motorcycle["name"])
+        self.licence_entry.insert(0, motorcycle["requiredLicence"])
+        self.price_entry.insert(0, motorcycle["rentPrice"])
+        self.description_entry.insert("1.0", motorcycle["description"])
 
         tk.Button(self.popup, text="Aktualizuj", command=self.update_motorcycle).grid(row=5, column=0, columnspan=2)
         tk.Button(self.popup, text="Anuluj", command=self.popup.destroy).grid(row=6, column=0, columnspan=2)
@@ -51,19 +61,25 @@ class EditMotorcyclePopup:
     def update_motorcycle(self):
         brand = self.brand_entry.get()
         name = self.name_entry.get()
-        licence = self.licence_entry.get()
+        licence = int(self.licence_entry.get())
         description = self.description_entry.get("1.0", "end")
         price = self.price_entry.get()
 
         try:
-            self.client.service.Update({
-                "Id": self.id,
-                "Brand": brand,
-                "Name": name,
-                "RequiredLicence": licence,
-                "Description": description,
-                "RentPrice": price
-            })
+            response = requests.put(
+                self.base_url, 
+                json={
+                    "id": self.id,
+                    "brand": brand,
+                    "name": name,
+                    "requiredLicence": licence,
+                    "description": description,
+                    "rentPrice": price
+                },
+                cert=(self.cert_path, self.cert_key),
+                verify=False
+            )
+            response.raise_for_status()
             messagebox.showinfo("Sukces", "Motocykl został zaktualizowany pomyślnie.")
             self.update_callback()
             self.popup.destroy()

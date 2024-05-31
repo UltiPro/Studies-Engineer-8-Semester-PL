@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
-
+import requests
 
 class AddMotorcyclePopup:
-    def __init__(self, parent, client, update_callback):
+    def __init__(self, parent, base_url, cert_path, cert_key, update_callback):
         self.parent = parent
-        self.client = client
+        self.base_url = base_url
+        self.cert_path = cert_path
+        self.cert_key = cert_key
         self.update_callback = update_callback
         self.popup = tk.Toplevel(parent)
         self.popup.title("Dodaj motocykl")
@@ -32,24 +34,32 @@ class AddMotorcyclePopup:
 
         tk.Button(self.popup, text="Dodaj", command=self.add_motorcycle).grid(row=5, column=0, columnspan=2)
         tk.Button(self.popup, text="Anuluj", command=self.popup.destroy).grid(row=6, column=0, columnspan=2)
-
+  
     def add_motorcycle(self):
         brand = self.brand_entry.get()
         name = self.name_entry.get()
-        licence = self.licence_entry.get()
+        licence = int(self.licence_entry.get())
         description = self.description_entry.get()
         price = self.price_entry.get()
 
         try:
-            self.client.service.Create({
-                "Brand": brand,
-                "Name": name,
-                "RequiredLicence": licence,
-                "Description": description,
-                "RentPrice": price
-            })
+            print(f'cert_key: {self.cert_key} \n cert_path: {self.cert_path}')
+            response = requests.post(
+                self.base_url,
+                json={
+                    "brand": brand,
+                    "name": name,
+                    "requiredLicence": licence,
+                    "description": description,
+                    "rentPrice": price
+                },
+                cert=(self.cert_path, self.cert_key),
+                verify=False
+            )
+            response.raise_for_status()
             messagebox.showinfo("Sukces", "Motocykl został dodany pomyślnie.")
             self.update_callback()
             self.popup.destroy()
         except Exception as e:
             messagebox.showerror("Błąd", str(e))
+

@@ -1,10 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
 
+import requests
+
 class RentMotorcyclePopup:
-    def __init__(self, parent, client, id, update_callback):
+    def __init__(self, parent, base_url, cert_path, cert_key, id, update_callback):
         self.parent = parent
-        self.client = client
+        self.base_url = base_url
+        self.cert_path = cert_path
+        self.cert_key = cert_key
         self.id = id
         self.update_callback = update_callback
         self.popup = tk.Toplevel(parent)
@@ -21,7 +25,12 @@ class RentMotorcyclePopup:
         days = self.days_entry.get()
 
         try:
-            self.client.service.Rent(self.id, days)
+            response = requests.post(
+                f"{self.base_url}/rent?id={self.id}&numOfDays={days}",
+                cert=(self.cert_path, self.cert_key),
+                verify=False
+            )
+            response.raise_for_status()
             messagebox.showinfo("Sukces", "Motocykl został wypożyczony pomyślnie.")
             self.update_callback()
             self.popup.destroy()
