@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using Server.Contracts;
 using Server.Models;
 
@@ -15,13 +16,36 @@ public class MotorController : ControllerBase
     [HttpGet("all")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Get() => Ok(await _motorService.GetAll());
+    public async Task<ActionResult> Get()
+    {
+        var motorsData = await _motorService.GetAll();
+
+        foreach (var motor in motorsData)
+        {
+            motor.Links = new List<Link>()
+            {
+                new Link(HttpContext.Request.GetDisplayUrl()+$"?id={motor.Id}", "self")
+            };
+        }
+
+        return Ok(motorsData);
+    }
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Detail(int id) => Ok(await _motorService.Detail(id));
+    public async Task<ActionResult> Detail(int id)
+    {
+        var motorData = await _motorService.Detail(id);
+
+        motorData.Links = new List<Link>()
+        {
+            new Link(HttpContext.Request.GetDisplayUrl(), "self")
+        };
+
+        return Ok(motorData);
+    }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -57,7 +81,20 @@ public class MotorController : ControllerBase
     [HttpGet("find/{search}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Find(string search) => Ok(await _motorService.GetSelected(search));
+    public async Task<ActionResult> Find(string search)
+    {
+        var motorsData = await _motorService.GetSelected(search);
+
+        foreach (var motor in motorsData)
+        {
+            motor.Links = new List<Link>()
+            {
+                new Link(HttpContext.Request.GetDisplayUrl()+$"?id={motor.Id}", "self")
+            };
+        }
+
+        return Ok(motorsData);
+    }
 
     [HttpPost("reserve/{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

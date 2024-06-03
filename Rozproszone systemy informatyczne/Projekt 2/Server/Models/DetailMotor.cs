@@ -1,5 +1,7 @@
 ﻿#pragma warning disable
 
+using Microsoft.Identity.Client;
+
 namespace Server.Models;
 
 public class DetailMotor
@@ -12,4 +14,5 @@ public class DetailMotor
     public int RentPrice { get; set; }
     public string RentTo { get; set; }
     public string Reservation { get; set; }
+    public List<Link>? Links { get; set; }
 }

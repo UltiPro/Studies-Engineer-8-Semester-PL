@@ -44,9 +44,3 @@ public class ExceptionMiddleware
         return context.Response.WriteAsync(ex.Message);
     }
 }
-
-public static class SoapCoreExceptionMiddleware
-{
-    public static IApplicationBuilder UseSoapExceptionMiddleware(this IApplicationBuilder builder)
-        => builder.UseMiddleware<ExceptionMiddleware>();
-}
