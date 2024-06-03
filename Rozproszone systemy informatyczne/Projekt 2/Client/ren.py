@@ -4,16 +4,19 @@ import tkinter as tk
 from tkinter import messagebox
 import requests
 import subprocess
+from requests.auth import HTTPBasicAuth
 
 from add_popup import AddMotorcyclePopup
 from edit_popup import EditMotorcyclePopup
 from rent_popup import RentMotorcyclePopup
 
 class MotorcycleRentalApp:
-    def __init__(self, root):
+    def __init__(self, root, username, password):
         self.root = root
         self.root.title("Motorcycle Rental App")
         self.current_brand_filter = ""
+        self.username = username  
+        self.password = password
         self.create_gui()
 
         # certyfikat
@@ -42,14 +45,15 @@ class MotorcycleRentalApp:
         self.table_frame.pack(fill="both", expand=True)
         
     def open_add_motorcycle_popup(self):
-        popup = AddMotorcyclePopup(self.root, self.base_url, self.cert_path, self.cert_key, self.display_motorcycles)
+        popup = AddMotorcyclePopup(self.root, self.base_url, self.cert_path, self.cert_key, self.username, self.password, self.display_motorcycles)
 
     def display_motorcycles(self):
         try:
             response = requests.get(
                 self.base_url + "/all",
                 cert=(self.cert_path, self.cert_key),
-                verify=False
+                verify=False,
+                auth=HTTPBasicAuth(self.username, self.password)
             )
             response.raise_for_status()
             motorcycles = response.json()
@@ -143,7 +147,8 @@ class MotorcycleRentalApp:
             response = requests.delete(
                 f"{self.base_url}?id={id}",
                 cert=(self.cert_path, self.cert_key),
-                verify=False
+                verify=False,
+                auth=HTTPBasicAuth(self.username, self.password)
             )
             response.raise_for_status()
             
@@ -153,14 +158,15 @@ class MotorcycleRentalApp:
             messagebox.showerror("Błąd", str(e))
 
     def edit_motorcycle(self, id):
-        popup = EditMotorcyclePopup(self.root, self.base_url, self.cert_path, self.cert_key, id, self.display_motorcycles)
+        popup = EditMotorcyclePopup(self.root, self.base_url, self.cert_path, self.cert_key, self.username, self.password, id, self.display_motorcycles)
 
     def show_motorcycle_details(self, id):
         try:
             response = requests.get(
                 f"{self.base_url}?id={id}",
                 cert=(self.cert_path, self.cert_key),
-                verify=False
+                verify=False,
+                auth=HTTPBasicAuth(self.username, self.password)
             )
             response.raise_for_status()
             details = response.json()
@@ -213,7 +219,8 @@ class MotorcycleRentalApp:
             response = requests.post(
                 f"{self.base_url}/cancelreserve/{id}",
                 cert=(self.cert_path, self.cert_key),
-                verify=False
+                verify=False,
+                auth=HTTPBasicAuth(self.username, self.password)
             )
             response.raise_for_status()
 
@@ -223,14 +230,15 @@ class MotorcycleRentalApp:
             messagebox.showerror("Błąd", str(e))
 
     def rent_motorcycle(self, id):
-        popup = RentMotorcyclePopup(self.root, self.base_url, self.cert_path, self.cert_key, id, self.display_motorcycles)
+        popup = RentMotorcyclePopup(self.root, self.base_url, self.cert_path, self.cert_key, self.username, self.password, id, self.display_motorcycles)
 
     def generate_pdf(self, id):
         try:
             response = requests.get(
                 f"{self.base_url}/pdf/{id}",
                 cert=(self.cert_path, self.cert_key),
-                verify=False
+                verify=False,
+                auth=HTTPBasicAuth(self.username, self.password)
             )
             response.raise_for_status()
             pdf_content = response.content
