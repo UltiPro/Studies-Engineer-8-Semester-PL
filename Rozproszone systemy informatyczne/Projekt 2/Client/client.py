@@ -1,5 +1,9 @@
 import requests
 import urllib3
+from requests.auth import HTTPBasicAuth
+
+username = "admin"
+password = "admin"
 
 urllib3.disable_warnings(
     urllib3.exceptions.InsecureRequestWarning
@@ -16,10 +20,11 @@ cert_key = "./cert.key"
 
 # dobrze jest mieć kod w try catchu ale to jak se tam chcesz
 
-"""response = requests.get(
-    base_url + "/all", cert=(cert_path, cert_key), verify=False
+response = requests.get(
+    base_url + "/all", cert=(cert_path, cert_key), verify=False, auth=HTTPBasicAuth(username, password)
 )  # zwykły get po path
 
+"""
 if response.status_code >= 200 and response.status_code >= 300:
     print(response.json())
 else:
@@ -50,7 +55,10 @@ print(response.json())"""
 
 try:
     response = requests.get(
-        base_url + "/pdf/4", cert=(cert_path, cert_key), verify=False
+        base_url + "/pdf/1",
+        cert=(cert_path, cert_key),
+        verify=False,
+        auth=HTTPBasicAuth(username, password),
     )
 
     # Sprawdzenie, czy zapytanie zakończyło się sukcesem
