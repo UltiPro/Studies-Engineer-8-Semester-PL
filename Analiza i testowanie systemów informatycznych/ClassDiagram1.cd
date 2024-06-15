@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="SPA.ParserAndPKB.PKB" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAQAgAAAAIAIE=</HashCode>
+      <FileName>ParserAndPKB\PKB.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Parser">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgQQBACCgAAAADAAAAAQAAAAAABCgAAAAAAQAAAAg=</HashCode>
+      <FileName>ParserAndPKB\Parser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Uses.Uses" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\Uses\Uses.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Tables.VarTable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAAAAAAAAAACAAAAAgAAAAAAAAAAAAQAAAAAAEAIA=</HashCode>
+      <FileName>ParserAndPKB\Tables\VarTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Tables.StmtTable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAACAAAACAAAAgAAAAgAAAEAAAAAAIAQAAAABAAAAA=</HashCode>
+      <FileName>ParserAndPKB\Tables\StmtTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Tables.ProcTable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAACAEBAAAAIAAAAAAAAAIAQAAAAAAIQAA=</HashCode>
+      <FileName>ParserAndPKB\Tables\ProcTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Modifies.Modifies" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAwAgAAAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\Modifies\Modifies.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Models.Variable">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\Models\Variable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Models.Statement" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACEAAAAAAAAAAAAAAAIAAAAAAAAAACAAAAAAAAAQAA=</HashCode>
+      <FileName>ParserAndPKB\Models\Statement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Models.Procedure" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAQAA=</HashCode>
+      <FileName>ParserAndPKB\Models\Procedure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Calls.Calls" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAIAAAAAAAAAAAAAAAAEAAAAAAAAAQAAAAAAAAAE=</HashCode>
+      <FileName>ParserAndPKB\Calls\Calls.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.SPAApp">
+    <Position X="13.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAI=</HashCode>
+      <FileName>SPAApp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.ParserAndPKB.Models.Common.BaseModel&lt;TKey, TKeyValue&gt;">
+    <Position X="1.5" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\Models\Common\BaseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.ParserAndPKB.AST.AST">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="GetConstants" Hidden="true" />
+      <Method Name="GetFirstChild" Hidden="true" />
+      <Method Name="GetFollows" Hidden="true" />
+      <Method Name="GetFollowsStar" Hidden="true" />
+      <Method Name="GetLinkedNodes" Hidden="true" />
+      <Method Name="GetNext" Hidden="true" />
+      <Method Name="GetNextStar" Hidden="true" />
+      <Method Name="GetParent" Hidden="true" />
+      <Method Name="GetParentStar" Hidden="true" />
+      <Method Name="IsFollowed" Hidden="true" />
+      <Method Name="IsFollowedStar" Hidden="true" />
+      <Method Name="IsNext" Hidden="true" />
+      <Method Name="IsNextStar" Hidden="true" />
+      <Method Name="IsParent" Hidden="true" />
+      <Method Name="IsParentStar" Hidden="true" />
+      <Method Name="SetChildOfLink" Hidden="true" />
+      <Method Name="SetFollows" Hidden="true" />
+      <Method Name="SetLink" Hidden="true" />
+      <Method Name="SetNext" Hidden="true" />
+      <Method Name="SetParent" Hidden="true" />
+      <Method Name="SetPrevLink" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAagAAAQAAAAiAIAAEAwAAAAEAgIAIIQMAAAIwAAAI=</HashCode>
+      <FileName>ParserAndPKB\AST\AST.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SPA.ParserAndPKB.AST.Nodes.Node">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\AST\Nodes\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.ParserAndPKB.AST.Nodes.NodeRelation">
+    <Position X="9.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\AST\Nodes\NodeRelation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.QueryResolver.QueryParser">
+    <Position X="9.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAhAAABAEAAAAAABAAAAAAAAEQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>QueryResolver\QueryParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.QueryResolver.QueryProcessor">
+    <Position X="12" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>QueryResolver\QueryProcessor\QueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.ApplicationModes.SPABasicMode" Collapsed="true">
+    <Position X="11.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ApplicationModes\SPABasicMode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.ApplicationModes.SPATestMode" Collapsed="true">
+    <Position X="11.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAIAAAAAAEAAAAAAAAAI=</HashCode>
+      <FileName>ApplicationModes\SPATestMode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.QueryResolver.CheckHelpers" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCQAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>QueryResolver\QueryHelper\CheckHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.QueryResolver.NodeHelper" Collapsed="true">
+    <Position X="13.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>QueryResolver\QueryHelper\NodeHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.QueryResolver.QueryHelper" Collapsed="true">
+    <Position X="13.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>QueryResolver\QueryHelper\QueryHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.QueryResolver.QueryDecode" Collapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>QueryResolver\QueryProcessor\QueryDecode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SPA.QueryResolver.QueryVariables" Collapsed="true">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAIAAACAAAABAAAAAAAAACAQEAAA=</HashCode>
+      <FileName>QueryResolver\QueryProcessor\QueryVariables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="SPA.ParserAndPKB.Enums.NodeRelationType">
+    <Position X="13.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAIAAAAAAQAAAAAAACAAAAAAAIAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\Enums\NodeRalationType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SPA.ParserAndPKB.Enums.QueryTokenType">
+    <Position X="15.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQSQAAQAAAAAgAAABBAADAAAAAAgAhCQAAAAAAAA=</HashCode>
+      <FileName>ParserAndPKB\Enums\QueryTokenType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
