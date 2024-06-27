@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This network was created in GeNIe Academic, which can be used for academic teaching and research purposes only -->
+<smile version="1.0" id="Diabietes_dens" numsamples="10000" discsamples="10000">
+	<nodes>
+		<cpt id="﻿Diabetes_012" diagtype="target">
+			<state id="Not_Diabetes" fault="true" />
+			<state id="Prediabetes" fault="true" />
+			<state id="Diabetes" fault="true" />
+			<probabilities>0.8220179859669928 0.01759067101492242 0.1603913430180848</probabilities>
+		</cpt>
+		<cpt id="HighBP" diagtype="observation" ranked="true">
+			<state id="No" />
+			<state id="Yes" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.5996633806203414 0.4003366193796586 0.3932584269662921 0.6067415730337078 0.241528034504005 0.7584719654959952</probabilities>
+		</cpt>
+		<cpt id="HighChol" diagtype="observation" ranked="true">
+			<state id="No" />
+			<state id="Yes" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.601707141139697 0.398292858860303 0.3370786516853932 0.6629213483146067 0.3160813308687616 0.6839186691312384</probabilities>
+		</cpt>
+		<cpt id="CholCheck" diagtype="observation" ranked="true">
+			<state id="Not_tested_in_last_5yrs" />
+			<state id="Tested_in_last_5yrs" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.04520317383986535 0.9547968261601346 0.01123595505617977 0.9887640449438202 0.008626001232285891 0.9913739987677141</probabilities>
+		</cpt>
+		<cpt id="BMI" diagtype="observation" ranked="true">
+			<state id="Severe_thinness" />
+			<state id="Moderate_thinness" />
+			<state id="Mild_thinness" />
+			<state id="Normal_range" />
+			<state id="Overweight" />
+			<state id="Obese_Class_I" />
+			<state id="Obese_Class_II" />
+			<state id="Obese_Class_III" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.001202212070209185 0.002043760519355614 0.01370521760038471 0.2885308968502044 0.3712430872805963 0.2007694157249339 0.07682135128636691 0.04568405866794902 0.005617977528089887 0.005617977528089887 0.005617977528089887 0.07865168539325842 0.3146067415730337 0.2977528089887641 0.1629213483146068 0.1292134831460674 7.69704433497537e-05 0.001924261083743842 0.00500307881773399 0.1139932266009852 0.3091902709359606 0.2820966748768473 0.1466286945812808 0.1410868226600985</probabilities>
+		</cpt>
+		<cpt id="Smoker" diagtype="observation" ranked="true">
+			<state id="Smoker" />
+			<state id="Not_Smoker" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.5601106035104593 0.4398893964895407 0.5 0.5 0.4941466420209489 0.5058533579790512</probabilities>
+		</cpt>
+		<cpt id="Stroke" diagtype="observation" ranked="true">
+			<state id="Never_had_a_Stroke" />
+			<state id="Had_a_Stroke" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.9663380620341429 0.03366193796585717 0.9101123595505618 0.0898876404494382 0.8921749845964264 0.1078250154035736</probabilities>
+		</cpt>
+		<cpt id="HeartDiseaseorAttack" diagtype="observation" ranked="true">
+			<state id="Never_had" />
+			<state id="Had_CHD_or_MI" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.9226977638855494 0.07730223611445058 0.8370786516853932 0.1629213483146068 0.784966112138016 0.215033887861984</probabilities>
+		</cpt>
+		<cpt id="PhysActivity" diagtype="observation" ranked="true">
+			<state id="No" />
+			<state id="Yes" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.2297427266169752 0.7702572733830247 0.3764044943820224 0.6235955056179775 0.3758471965495995 0.6241528034504005</probabilities>
+		</cpt>
+		<cpt id="Fruits" diagtype="observation" ranked="true">
+			<state id="Dont_eat_them_everyday" />
+			<state id="Eat_them_everyday" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.3860302957441692 0.6139697042558308 0.4662921348314606 0.5337078651685393 0.4399260628465804 0.5600739371534196</probabilities>
+		</cpt>
+		<cpt id="Veggies" diagtype="observation" ranked="true">
+			<state id="Dont_eat_them_everyday" />
+			<state id="Eat_them_everyday" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.1830968982928589 0.8169031017071411 0.2584269662921348 0.7415730337078652 0.2556993222427603 0.7443006777572397</probabilities>
+		</cpt>
+		<cpt id="HvyAlcoholConsump" diagtype="observation" ranked="true">
+			<state id="Not_heavy_drinker" />
+			<state id="Heavy_drinket" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.936523202692955 0.06347679730704496 0.9662921348314606 0.03370786516853932 0.9833641404805915 0.01663585951940851</probabilities>
+		</cpt>
+		<cpt id="AnyHealthcare" diagtype="observation" ranked="true">
+			<state id="None" />
+			<state id="Has_health_care" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.06407790334214955 0.9359220966578504 0.03932584269662921 0.9606741573033708 0.04867529266789895 0.9513247073321011</probabilities>
+		</cpt>
+		<cpt id="NoDocbcCost" diagtype="observation" ranked="true">
+			<state id="Not_a_Financial_Issue" />
+			<state id="Financial_Issue" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.8976917528251983 0.1023082471748016 0.8651685393258427 0.1348314606741573 0.8706099815157117 0.1293900184842884</probabilities>
+		</cpt>
+		<cpt id="GenHlth" diagtype="observation" ranked="true">
+			<state id="Excelent" />
+			<state id="VeryGood" />
+			<state id="Good" />
+			<state id="Fair" />
+			<state id="Poor" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.1984852127915364 0.3557345515748978 0.2974272661697523 0.1049531137292618 0.04339985573455157 0.03932584269662921 0.2078651685393259 0.3820224719101123 0.2303370786516854 0.1404494382022472 0.03327171903881701 0.1620455945779421 0.3838570548367221 0.2698706099815157 0.1509550215650031</probabilities>
+		</cpt>
+		<cpt id="MentHlth" diagtype="observation" ranked="true">
+			<state id="d_0_to_1" />
+			<state id="d_1_to_3" />
+			<state id="d_3_to_7" />
+			<state id="d_7_to_14" />
+			<state id="d_14_to_30" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.6910314979562394 0.08691993267612406 0.08163019956720366 0.04460206780476076 0.09581630199567204 0.5168539325842696 0.1123595505617977 0.1067415730337079 0.0449438202247191 0.2191011235955056 0.6358595194085028 0.06900800985828713 0.07640172520024646 0.04867529266789895 0.1700554528650647</probabilities>
+		</cpt>
+		<cpt id="PhysHlth" diagtype="observation" ranked="true">
+			<state id="d_0_to_1" />
+			<state id="d_1_to_3" />
+			<state id="d_3_to_7" />
+			<state id="d_7_to_14" />
+			<state id="d_14_to_30" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.6402981485934118 0.09966338062034143 0.08812214474633324 0.04868958884347199 0.1232267371964414 0.4606741573033708 0.0898876404494382 0.0898876404494382 0.1123595505617977 0.247191011235955 0.4602587800369686 0.08995686999383858 0.09981515711645102 0.06900800985828713 0.2809611829944547</probabilities>
+		</cpt>
+		<cpt id="DiffWalk" diagtype="observation" ranked="true">
+			<state id="None" />
+			<state id="Difficulty_walking_or_climbing_stairs" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.845034864150036 0.1549651358499639 0.651685393258427 0.348314606741573 0.6149106592729513 0.3850893407270487</probabilities>
+		</cpt>
+		<cpt id="Sex" diagtype="observation" ranked="true">
+			<state id="Female" />
+			<state id="Male" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.5827121904303919 0.4172878095696081 0.6292134831460674 0.3707865168539326 0.5693160813308688 0.4306839186691312</probabilities>
+		</cpt>
+		<cpt id="Age" diagtype="observation" ranked="true">
+			<state id="a18_24" />
+			<state id="a25_29" />
+			<state id="a30_34" />
+			<state id="a35_39" />
+			<state id="a40_44" />
+			<state id="a45_49" />
+			<state id="a50_54" />
+			<state id="a55_59" />
+			<state id="a60_64" />
+			<state id="a65_69" />
+			<state id="a70_74" />
+			<state id="a75_79" />
+			<state id="a80_plus" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.02380379899014186 0.0318586198605434 0.04472228901178168 0.06251502765087762 0.07069006972830007 0.08331329646549651 0.1124068285645588 0.1182976677085838 0.1258716037509016 0.1188987737436884 0.08752103871122865 0.06131281558066843 0.05878817023322914 0.0004297378599054578 0.01718951439621831 0.01718951439621831 0.03394929093253116 0.03394929093253116 0.07305543618392782 0.08981521272024066 0.1289213579716373 0.162440911044263 0.1959604641168887 0.06188225182638592 0.08981521272024066 0.09540180489901162 0.001848428835489834 0.003696857670979667 0.008009858287122612 0.01848428835489834 0.03019100431300062 0.05237215033887862 0.08687615526802218 0.1324707332101047 0.1540357362908195 0.1829944547134935 0.1447935921133703 0.09303758471965497 0.09118915588416512</probabilities>
+		</cpt>
+		<cpt id="Education" diagtype="observation" ranked="true">
+			<state id="kindergarten" />
+			<state id="Elementary_school" />
+			<state id="Middle_school" />
+			<state id="High_school" />
+			<state id="Undergraduate_studies" />
+			<state id="Graduate_studies" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.000480884828083674 0.01286366915123828 0.03955277710988218 0.2341909112767492 0.2969463813416687 0.415965376292378 0.005617977528089887 0.01685393258426966 0.05056179775280899 0.3202247191011236 0.3314606741573033 0.2752808988764045 0.002464571780653112 0.03450400492914357 0.08502772643253236 0.2692544670363524 0.3074553296364756 0.3012939001848429</probabilities>
+		</cpt>
+		<cpt id="Income" diagtype="observation" ranked="true">
+			<state id="i_below_10k" />
+			<state id="i_10k_to_15k" />
+			<state id="i_15k_to_20k" />
+			<state id="i_20k_to_25k" />
+			<state id="i_25k_to_35k" />
+			<state id="i_35k_to_50k" />
+			<state id="i_50k_to75k" />
+			<state id="i_75k_and_more" />
+			<parents>﻿Diabetes_012</parents>
+			<probabilities>0.03690791055542197 0.04424140418369801 0.06660254868958884 0.07585958163019957 0.09605674440971387 0.1419812454917047 0.1716758836258716 0.3666746814138014 0.06179775280898876 0.1235955056179775 0.06179775280898876 0.1123595505617977 0.1179775280898876 0.1460674157303371 0.1685393258426966 0.2078651685393259 0.06900800985828713 0.08441158348736907 0.1226124460874923 0.1232285890326556 0.1244608749229821 0.1429451632778805 0.1429451632778805 0.1903881700554529</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 4.1.4109.0 ACADEMIC" name="Naive_Bayes">
+			<node id="﻿Diabetes_012">
+				<name>﻿Diabetes_012</name>
+				<interior color="ffff80" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>508 283 580 331</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="HighBP">
+				<name>HighBP</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1217 374 1289 422</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="HighChol">
+				<name>HighChol</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1192 473 1264 521</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="CholCheck">
+				<name>CholCheck</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1026 538 1098 586</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="BMI">
+				<name>BMI</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>971 667 1043 715</position>
+				<barchart active="true" width="128" height="162" />
+			</node>
+			<node id="Smoker">
+				<name>Smoker</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>802 771 874 819</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Stroke">
+				<name>Stroke</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>699 857 771 905</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="HeartDiseaseorAttack">
+				<name>HeartDiseaseorAttack</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>572 939 644 987</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="PhysActivity">
+				<name>PhysActivity</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>445 859 517 907</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Fruits">
+				<name>Fruits</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>330 765 402 813</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Veggies">
+				<name>Veggies</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>204 678 276 726</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="HvyAlcoholConsump">
+				<name>HvyAlcoholConsump</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>54 616 126 664</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="AnyHealthcare">
+				<name>AnyHealthcare</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>45 518 117 566</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="NoDocbcCost">
+				<name>NoDocbcCost</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>45 380 117 428</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="GenHlth">
+				<name>GenHlth</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>42 244 114 292</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="MentHlth">
+				<name>MentHlth</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>154 90 226 138</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="PhysHlth">
+				<name>PhysHlth</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>332 43 404 91</position>
+				<barchart active="true" width="128" height="108" />
+			</node>
+			<node id="DiffWalk">
+				<name>DiffWalk</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>500 20 572 68</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Sex">
+				<name>Sex</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>661 15 733 63</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="Age">
+				<name>Age</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1212 184 1284 232</position>
+				<barchart active="true" width="128" height="252" />
+			</node>
+			<node id="Education">
+				<name>Education</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>842 45 914 93</position>
+				<barchart active="true" width="128" height="126" />
+			</node>
+			<node id="Income">
+				<name>Income</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1017 81 1089 129</position>
+				<barchart active="true" width="128" height="162" />
+			</node>
+			<textbox>
+				<caption>Input file: Diabietes_dens.csv\nData rows: 10119\nElapsed time: 0.078s\n\nLearning algorithm: Naive Bayes\nAlgorithm parameters:\nClass variable: ﻿Diabetes_012\n\nEM Log Likelihood: -177357</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>25 748 180 874</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>
