@@ -1,2 +1,2 @@
 # Studies-Master-1-Semester-PL
-First semester of studies at Bialystok Technical University.
+First semester of master studies at Bialystok Technical University.
