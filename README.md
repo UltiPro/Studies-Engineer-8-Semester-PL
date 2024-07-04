@@ -1,2 +1,2 @@
-# Studies-Engineer-8-Semester-PL
-Eighth semester of studies at Bialystok Technical University.
+# Studies-Master-1-Semester-PL
+First semester of studies at Bialystok Technical University.
